@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Save User Preferences</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .color-button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Choose a Background Color</h1>
+  <button class="color-button" style="background-color: lightblue;" data-color="lightblue">Light Blue</button>
+  <button class="color-button" style="background-color: lightgreen;" data-color="lightgreen">Light Green</button>
+  <button class="color-button" style="background-color: lightcoral;" data-color="lightcoral">Light Coral</button>
+  <button class="color-button" style="background-color: lightgoldenrodyellow;" data-color="lightgoldenrodyellow">Light Yellow</button>
+
+  <script>
+    const colorButtons = document.querySelectorAll('.color-button');
+
+    // Apply saved background color on page load
+    document.body.style.backgroundColor = localStorage.getItem('bgColor') || '#fff';
+
+    // Add click event listeners to buttons
+    colorButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        const selectedColor = e.target.dataset.color;
+        document.body.style.backgroundColor = selectedColor;
+        localStorage.setItem('bgColor', selectedColor); // Save the color to localStorage
+      });
+    });
+  </script>
+</body>
+</html>
